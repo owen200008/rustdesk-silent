@@ -30,6 +30,9 @@ env:
 on:
   workflow_dispatch:
 
+env:
+  UPLOAD_ARTIFACT: "true"
+
 permissions:
   contents: read
 
