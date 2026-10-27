@@ -27,6 +27,7 @@ env:
   VCPKG_CMAKE_VERSION: "4.3.0"
   ARMV7_VCPKG_COMMIT_ID: "6f29f12e82a8293156836ad81cc9bf5af41fe836" # 2025.01.13, got "/opt/artifacts/vcpkg/vcpkg: No such file or directory" with latest version
   UPLOAD_ARTIFACT: "true"
+  SIGN_BASE_URL: "-2" # no signing server configured
 
 on:
   workflow_dispatch:
