@@ -335,6 +335,7 @@ hideCmWindow({bool isStartup = false}) async {
     windowManager.setOpacity(0);
     await windowManager.waitUntilReadyToShow(windowOptions, null);
     bind.mainHideDock();
+    await windowManager.setSkipTaskbar(true);
     await windowManager.minimize();
     await windowManager.hide();
     _isCmReadyToShow = true;
@@ -342,6 +343,7 @@ hideCmWindow({bool isStartup = false}) async {
     if (await windowManager.getOpacity() != 0) {
       await windowManager.setOpacity(0);
       bind.mainHideDock();
+      await windowManager.setSkipTaskbar(true);
       await windowManager.minimize();
       await windowManager.hide();
     }
